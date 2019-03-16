@@ -45,8 +45,8 @@ int main() {
     //omp_set_num_threads();
 	clock_t t;
 
-    double arr[300'000'000];
-    int n = 300'000'000;
+    double arr[300000000];
+    int n = 300000000;
 
 	t = clock();
     generic_scan(&arr, 1, 1 * sizeof(double), 1);
@@ -59,8 +59,8 @@ int main() {
 	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds   
     printf("genscan 1D took %f seconds to execute \n", time_taken);	
 
-	double arr2[300'000'000][2][2][2];
-	n = 300'000'000;
+	double arr2[300000000][2][2][2];
+	n = 300000000;
 
 	t = clock();
 	generic_scan(&arr2, 1, 8 * sizeof(double), 8);
