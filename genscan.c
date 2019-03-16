@@ -45,15 +45,8 @@ int main() {
     //omp_set_num_threads();
 	clock_t t;
 
-    double arr[10];
-    int n = 10;
-	arr[0] = 1;
-	arr[1] = 1;
-	arr[2] = 1;
-	arr[3] = 1;
-	arr[4] = 1;
-	arr[5] = 1;
-	arr[6] = 1;	
+    double arr[300'000'000];
+    int n = 300'000'000;
 
 	t = clock();
     generic_scan(&arr, 1, 1 * sizeof(double), 1);
@@ -64,30 +57,18 @@ int main() {
 	t = clock() - t;
 
 	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds   
-    printf("genscan 1D took %f seconds to execute \n", time_taken);
+    printf("genscan 1D took %f seconds to execute \n", time_taken);	
 
-	for (int i = 0; i < 7; ++i)
-		printf("%lf ", arr[i]);
-	printf("\n");
+	double arr2[300'000'000][2][2][2];
+	n = 300'000'000;
 
-	double arr2[10][2][2][2];
-	n = 10;
-	arr2[0][1][0][1] = 1;
-	arr2[1][1][0][1] = 1;
-	arr2[2][1][0][1] = 1;
-	arr2[3][1][0][1] = 1;
-	arr2[4][1][0][1] = 1;
-	arr2[5][1][0][1] = 1;
-	arr2[6][1][0][1] = 1;
+	t = clock();
+	generic_scan(&arr2, 1, 8 * sizeof(double), 8);
+	t = clock() - t;
 
 	t = clock();
 	generic_scan(&arr2, n, 8 * sizeof(double), 8);
-	t = clock() - t;
-
-	for (int i = 0; i < 7; ++i) {
-		printf("%lf ", arr2[i][1][0][1]);
-	}
-	printf("\n");
+	t = clock() - t;	
 
 	time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds   
     printf("genscan 4D took %f seconds to execute \n", time_taken);
