@@ -47,6 +47,8 @@ int main() {
 
     double arr[300000000];
     int n = 300000000;
+	for (int i = 0; i < n; ++i)
+		arr[i] = i % 2;
 
 	t = clock();
     generic_scan(&arr, 1, 1 * sizeof(double), 1);
@@ -61,6 +63,16 @@ int main() {
 
 	double arr2[300000000][2][2][2];
 	n = 300000000;
+	for (int i = 0; i < n; ++i) {
+		arr2[i][0][0][0] = i % 2;
+		arr2[i][0][0][1] = (i+1) % 2;
+		arr2[i][0][1][0] = i % 2;
+		arr2[i][0][1][1] = (i+1) % 2;
+		arr2[i][1][0][0] = i % 2;
+		arr2[i][1][0][1] = (i+1) % 2;
+		arr2[i][1][1][0] = i % 2;
+		arr2[i][1][1][1] = (i+1) % 2;
+	}
 
 	t = clock();
 	generic_scan(&arr2, 1, 8 * sizeof(double), 8);
