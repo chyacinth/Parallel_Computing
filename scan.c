@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // a += b
 void userBinaryOperator(void *input1andOutput, void *input2, int dim)
 {
-    double *a = (double *) input1andOutput;
-    double *b = (double *) input2;
+    int *a = (int *) input1andOutput;
+    int *b = (int *) input2;
 	for (int i = 0; i < dim; ++i) {
     	*(a + i) += *(b + i);
 	}		
@@ -51,7 +52,12 @@ int main( int argc, char **argv){
 	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
 
 	// scan
-	genericScan((void*) x,n,sizeof(int));
+	clock_t t = clock();
+	generic_scan((void*) x,n, 1 * sizeof(int), 1);
+	t = clock() - t;
+
+	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds   
+    printf("scan %d elements took %f seconds to execute \n", n, time_taken);
 
 	//print output
 	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
