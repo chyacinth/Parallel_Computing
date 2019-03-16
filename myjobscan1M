@@ -14,5 +14,5 @@
 # run the executable named a.out
 # 1 core, 1 socket, 1 node
 ibrun numactl -C 13 ./a.out 1000000
-ibrun numactl -N 0 ./a.out 1000000
-ibrun numactl ./a.out 1000000
+ibrun numactl -C 0,1,2,3,4,5,6,7,8,9,10,11 ./a.out 1000000
+ibrun numactl -C 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 ./a.out 1000000
