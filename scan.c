@@ -49,18 +49,21 @@ int main( int argc, char **argv){
 	for(int i=0;i<n;i++) x[i] = i%2;
 
 	// print input
-	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
+	//for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
 
+	clock_t t = clock();
+	generic_scan((void*) x, 1, 1 * sizeof(int), 1);
+	t = clock() - t;
 	// scan
 	clock_t t = clock();
-	generic_scan((void*) x,n, 1 * sizeof(int), 1);
+	generic_scan((void*) x, n, 1 * sizeof(int), 1);
 	t = clock() - t;
 
 	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds   
     printf("scan %d elements took %f seconds to execute \n", n, time_taken);
 
 	//print output
-	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
+	//for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
 
 	// clean up
 	free(x);
