@@ -55,7 +55,7 @@ int main( int argc, char **argv){
 	generic_scan((void*) x, 1, 1 * sizeof(int), 1);
 	t = clock() - t;
 	// scan
-	clock_t t = clock();
+	t = clock();
 	generic_scan((void*) x, n, 1 * sizeof(int), 1);
 	t = clock() - t;
 
