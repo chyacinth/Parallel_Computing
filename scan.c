@@ -21,6 +21,15 @@ void generic_scan_parallel(void *X, int n, size_t l, int dim)
     if (n == 1) {
         return;
     }
+
+	if (n <= 5000) {
+		int s = 0;
+		for (int i = 0; i < n; ++i) {
+			s += *(c + i * l);
+			*(c + i * l) = s;
+		}
+		return;
+	}
 	
 	#pragma omp task
 	generic_scan_parallel(c, n/2, l, dim);
@@ -49,7 +58,7 @@ int main( int argc, char **argv){
 	for(int i=0;i<n;i++) x[i] = i%2;
 
 	// print input
-	//for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
+	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
 
 	clock_t t = clock();
 	generic_scan((void*) x, 1, 1 * sizeof(int), 1);
@@ -63,7 +72,7 @@ int main( int argc, char **argv){
     printf("scan %d elements took %f seconds to execute \n", n, time_taken);
 
 	//print output
-	//for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
+	for(int i=0;i<n;i++) printf("%d ",x[i]); 	printf("\n");
 
 	// clean up
 	free(x);
